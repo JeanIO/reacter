@@ -66,3 +66,9 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+
+
+___________________________华丽的分割线
+ * 本项目仅仅用作练习使用 目前仅使用react + redux + es6  而后会融合eslint + rxjs  以作rxjs入门训练。
+
