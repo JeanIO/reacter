@@ -5,9 +5,13 @@ import App from './entry';
 import store from './store'
 import * as serviceWorker from './serviceWorker';
 
+const Page2 = () => {
+    return <div>hello world</div>
+}
 ReactDOM.render(
 <Provider store={store}>
     <App />
+    <Page2/>
 </Provider>
 , document.getElementById('root'));
 
