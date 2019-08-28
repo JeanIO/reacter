@@ -1,5 +1,6 @@
-import render from './entry'
+import render from './pages/admin-login/entry'
 import * as serviceWorker from './serviceWorker'
+
 
 render()
 

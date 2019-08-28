@@ -6,9 +6,24 @@
     "configurations": [
         {
             "type": "node",
+            "name": "vscode-jest-tests",
+            "request": "launch",
+            "program": "${workspaceFolder}/scripts/test",
+            "args": [
+                "--env=jsdom",
+                "--runInBand"
+            ],
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "protocol": "inspector",
+            "internalConsoleOptions": "neverOpen",
+            "disableOptimisticBPs": true
+        },
+        {
+            "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}/scripts/start.js"
+            "program": "${workspaceFolder}/scripts/test.js"
         }
     ]
 }
