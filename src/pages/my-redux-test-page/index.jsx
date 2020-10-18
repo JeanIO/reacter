@@ -1,6 +1,8 @@
 import React from 'react'
+import MyStore from './../../my-redux'
 import { connect } from 'react-redux'
 import { actions } from '../../entities/toDoList'
+import store from '../../store'
 
 
 class MyReduxPage extends React.Component{
@@ -11,13 +13,19 @@ class MyReduxPage extends React.Component{
         }
     }
 
+    componentDidMount(){
+        MyStore.subscribe(() => {
+            this.forceUpdate()
+        })
+    }
+
     handleChange = (e) =>{
         this.setState({ value: e.target.value })
     }
 
     asyncAdd = () => {
-        const { asyncAdd } = this.props
-        asyncAdd(this.state.value)
+        debugger
+        MyStore.dispatch({ type: actions.addToDo, data: this.state.value + '1' })
         this.setState({ value: '' })
     }
 
@@ -41,7 +49,9 @@ class MyReduxPage extends React.Component{
     }
 
     render(){
-        const { toDoList } = this.props
+        // const { toDoList } = this.props
+        const toDoList = MyStore.getState()
+
         return <div>
             <ul>
                 {toDoList.map(item => {
@@ -54,22 +64,23 @@ class MyReduxPage extends React.Component{
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        toDoList: state.ToDo
-    }
-}
+// const mapStateToProps = (state) => {
+//     return {
+//         toDoList: state.ToDo
+//     }
+// }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        delToDo: (id) => dispatch({type: actions.delToDo, id }),
-        finishToDo: (id) => dispatch({type: actions.finishToDo, id}),
-        addToDo: (msg) => dispatch({ type: actions.addToDo, data: msg }),
-        asyncAdd: (msg) => dispatch(function(dis){
-            dis({ type: actions.addToDo, data: msg + '1' })
-            dis({ type: actions.addToDo, data: msg + '2' })
-        })
-    }
-}
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         delToDo: (id) => dispatch({type: actions.delToDo, id }),
+//         finishToDo: (id) => dispatch({type: actions.finishToDo, id}),
+//         addToDo: (msg) => dispatch({ type: actions.addToDo, data: msg }),
+//         asyncAdd: (msg) => dispatch(function(dis){
+//             dis({ type: actions.addToDo, data: msg + '1' })
+//             dis({ type: actions.addToDo, data: msg + '2' })
+//         })
+//     }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MyReduxPage)
+// export default connect(mapStateToProps, mapDispatchToProps)(MyReduxPage)
+export default MyReduxPage
